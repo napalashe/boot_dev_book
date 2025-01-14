@@ -1,16 +1,41 @@
+class OnlineCourse:
+    def __init__(self, course, instructor):
+        self.course = course
+        self.instructor = instructor
+        self.students = []
+        
+
+    def enroll_students(self, name):
+        self.students.append(name)
+        print(f"{name} has been enrolled in the course")
+    def course_details(self):
+        print(f'Course: {self.course}')
+        print(f'Instructor: {self.instructor}')
+        print(f'Enrolled students: {', '.join(self.students)}')
 
 
-with open('books/frankenstein.txt') as f:
-    file_contents = f.read()
-    print(file_contents)
+    def completed_course(self, name):
+        if name in self.students:
+            self.students.remove(name)
+            print(f'{name} has completed the course!')
+        else:
+            print(f'{name} is not a part of this course')
+
+    def average_grades(self, grades):
+        total = sum(grades)
+        average = total / len(grades)
+        print(f'The average grade is {average}')
 
 
-words = file_contents.split()
 
-word_count = len(words)
-
-
-print(f'The file length is {word_count}!')
+course_input = input("Enter a course: ").lower()
+name = input("Enter an instructor: ").lower()
+student = input("Enter a name: ").lower()
 
 
-my_word = ''
+course = OnlineCourse(course_input, name)
+grades = [90,75,80,20,40]
+
+course.average_grades(grades)
+course.enroll_students(student)
+course.course_details()
